@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-user-table
+      author: Artur Gerc
+      preConditions:
+        - not:
+            tableExists: users
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 02-insert-test-users
+      author: AR (generated)
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Иван"
+              - column:
+                  name: last_name
+                  value: "Иванов"
+              - column:
+                  name: address
+                  value: "Москва, ул. Ленина, д. 10"
+              - column:
+                  name: phone_number
+                  value: "+79991234567"
+              - column:
+                  name: email
+                  value: "ivanov@example.com"
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Петр"
+              - column:
+                  name: last_name
+                  value: "Петров"
+              - column:
+                  name: address
+                  value: "Санкт-Петербург, Невский пр., д. 20"
+              - column:
+                  name: phone_number
+                  value: "+79997654321"
+              - column:
+                  name: email
+                  value: "petrov@example.com"
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Мария"
+              - column:
+                  name: last_name
+                  value: "Сидорова"
+              - column:
+                  name: address
+                  value: "Екатеринбург, ул. Мира, д. 5"
+              - column:
+                  name: phone_number
+                  value: "+79995556677"
+              - column:
+                  name: email
+                  value: "sidorova@example.com"

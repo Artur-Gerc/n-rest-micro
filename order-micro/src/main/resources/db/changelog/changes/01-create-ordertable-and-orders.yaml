@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-orders-table
+      author: Artur Gerc
+      preConditions:
+        - not:
+            tableExists: orders
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sum
+                  type: numeric(19,2)
+              - column:
+                  name: currency
+                  type: varchar(3)
+              - column:
+                  name: products
+                  type: text
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 02-insert-test-orders
+      author: AR (generated)
+      changes:
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: sum
+                  value: 99.99
+              - column:
+                  name: currency
+                  value: "USD"
+              - column:
+                  name: products
+                  value: "[1,2,3]"
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: sum
+                  value: 149.50
+              - column:
+                  name: currency
+                  value: "EUR"
+              - column:
+                  name: products
+                  value: "[4,5]"
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: sum
+                  value: 75.25
+              - column:
+                  name: currency
+                  value: "USD"
+              - column:
+                  name: products
+                  value: "[6,7,8,9]"
